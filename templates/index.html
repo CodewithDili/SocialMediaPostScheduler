@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Social Media Scheduler</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Schedule a Post</h1>
+    <form action="{{ url_for('schedule_post') }}" method="post">
+        <label for="platform">Platform:</label>
+        <input type="text" id="platform" name="platform" required><br>
+        <label for="content">Content:</label>
+        <textarea id="content" name="content" required></textarea><br>
+        <label for="post_time">Post Time:</label>
+        <input type="datetime-local" id="post_time" name="post_time" required><br>
+        <input type="submit" value="Schedule">
+    </form>
+    <h2>Scheduled Posts</h2>
+    <ul>
+        {% for post in posts %}
+            <li>{{ post.platform }}: {{ post.content }} at {{ post.post_time }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
